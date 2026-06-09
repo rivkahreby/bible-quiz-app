@@ -1,188 +1,299 @@
-/* 🎨 Royal Dark Theme Variables */
+/* 1. Root Variables */
 :root {
---bg-dark: #e88f3c;
---bg-dark-panel: #e7e71e;
---bg-card: #6e0772;
---gold-glow: rgba(212, 175, 55, 0.4);
---gold-bright: #ffd700;
---gold-dark: #aa8420;
---text-main: #f5f5f4;
---text-muted: #a1a1aa;
---red-heart: #ff2a6d;
---green-success: #059669;
---blue-mini: #0284c7;
+  --bg-dark: #f58924;
+  --bg-dark-panel: #e7e71e;
+  --bg-card: #e8bf1c;
+  --gold-glow: rgba(212, 175, 55, 0.4);
+  --gold-bright: #ffd700;
+  --gold-dark: #aa8420;
+  --red-heart: #ff2a6d;
 }
 
-body {
-margin: 0;
-padding: 0;
-background-color: var(--bg-dark);
-color: var(--text-main);
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-overflow-x: hidden;
-}
+body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: sans-serif; }
+*, *::before, *::after { box-sizing: border-box;color: rgb(8, 7, 7); }
 
-/* Custom Scrollbar for Premium Feel */
-::-webkit-scrollbar {
-width: 8px;
-}
-::-webkit-scrollbar-track {
-background: var(--bg-dark);
-}
-::-webkit-scrollbar-thumb {
-background: #bab3b3;
-border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-background: var(--gold-dark);
-}
+/* 2. Main Layout */
 
-/* 🎯 Responsive Grid Container with subtle ambient glow */
 .app-container {
-display: grid;
-grid-template-columns: 1fr;
-min-height: 100vh;
-gap: 24px;
-padding: 24px;
-box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-panel) 50%, #e89a1d 100%);
+  background-size: 300% 300%;
+  animation: pulseBg 12s ease infinite;
 }
 
-/* 🎮 Quiz Card Box (Double-gilded gold borders with shadow glow) */
+.login-container,
+.game-container {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container {
+  max-width: 420px;
+  padding: 40px 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 30px;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px);
+  animation: floatIn 0.9s ease-out both;
+  z-index: 1;
+}
+
+.doll-cloud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.doll {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.92;
+  animation: floatDoll 6s ease-in-out infinite alternate;
+}
+
+.doll-1 { top: 8%; left: 10%; animation-delay: 0s; }
+.doll-2 { top: 18%; right: 8%; animation-delay: 1s; }
+.doll-3 { bottom: 14%; left: 18%; animation-delay: 2s; }
+.doll-4 { top: 10%; right: 16%; animation-delay: 0.5s; }
+.doll-5 { bottom: 20%; right: 12%; animation-delay: 1.4s; }
+.doll-6 { top: 50%; left: 6%; animation-delay: 2.2s; }
+
+.game-container {
+  width: 100%;
+}
+
+.login-container h1,
+.game-container header,
 .quiz-section {
-background-color: var(--bg-card);
-border-radius: 20px;
-border: 2px solid var(--gold-dark);
-padding: 40px 24px;
-box-shadow: 0 10px 40px rgba(244, 185, 185, 0.8),
-0 0 30px var(--gold-glow);
-position: relative;
-overflow: hidden;
-animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  width: 100%;
 }
 
-/* Subtle watermarked background pattern inside quiz card */
-.quiz-section::before {
-content: "📖";
-position: absolute;
-font-size: 280px;
-opacity: 0.02;
-bottom: -50px;
-right: -30px;
-pointer-events: none;
+.login-container h1 {
+  color: #fff;
+  font-size: 2.25rem;
+  margin: 0 0 18px;
+  letter-spacing: 0.06em;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
 }
 
-/* 📺 Right Side: Continuous Video Ad Box styling */
-.ad-section {
-background-color: var(--bg-dark-panel);
-border-radius: 20px;
-border: 1px solid #2a2a29;
-padding: 24px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: flex-start;
-height: max-content;
-position: sticky;
-top: 24px;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.login-container button {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffca28 0%, #ff6d00 100%);
+  color: #111;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 16px 30px rgba(255, 154, 0, 0.24);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
-.ad-label {
-font-size: 11px;
-font-weight: bold;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-margin-bottom: 12px;
+.login-container button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 22px 36px rgba(255, 154, 0, 0.32);
+  filter: saturate(1.15);
 }
 
-.video-ad-box {
-width: 100%;
-aspect-ratio: 16/9;
-background-color: #000;
-border-radius: 12px;
-border: 2px dashed #444;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-transition: border-color 0.3s ease;
+.login-container button:active {
+  transform: translateY(0) scale(0.99);
 }
 
-.video-ad-box:hover {
-border-color: var(--gold-bright);
-}
+/* 3. Quiz Section */
 
-/* ❤️ Pulsing Animation for Hearts */
-.heart-icon {
-color: var(--red-heart);
-font-size: 20px;
-display: inline-block;
-animation: heartPulse 1.2s infinite ease-in-out;
-}
-
-/* 🔘 Styled Option Buttons with hover state scaling */
 .quiz-section button {
-transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-outline: none;
+  display: block;
+  width: 100%;
+  margin: 10px ;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: rgb(235, 230, 230);
+  color: rgb(16, 1, 1);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
 
-.quiz-section button:hover:not(:disabled) {
-transform: translateY(-2px);
-box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
-border-color: var(--gold-bright) !important;
+.game-container header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  animation: floatIn 0.9s ease-out both;
 }
 
-.quiz-section button:active:not(:disabled) {
-transform: translateY(1px);
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-/* Modal Backdrops with Blur effect /
-div[style="position: fixed"] {
-backdrop-filter: blur(8px);
-transition: all 0.3s ease;
+.button-row button {
+  flex: 1 1 180px;
+  min-width: 150px;
+  max-width: 240px;
+  animation: popInBtn 0.6s ease both;
 }
 
-/* ✨ CSS Keyframe Animations */
-@keyframes slideUp {
-from {
-opacity: 0;
-transform: translateY(30px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-@keyframes heartPulse {
-0% { transform: scale(1); }
-50% { transform: scale(1.25); filter: drop-shadow(0 0 5px var(--red-heart)); }
-100% { transform: scale(1); }
+.quiz-section {
+  background-color: #7b1fa2;
+  padding: 40px 30px;
+  border-radius: 40px;
+  color: rgb(213, 56, 56);
+  width: 100%;
+  min-height: 420px;
+  max-width: 500px;
+  margin: 0 auto;
+  align-self: center;
+  text-align: center;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(17, 239, 28, 0.3);
+  animation: floatIn 0.9s ease-out both;
 }
 
-/* 💻 Desktop/Laptop Screen View optimization */
-@media (min-width: 900px) {
-.app-container {
-grid-template-columns: 2.7fr 1fr;
-max-width: 1400px;
-margin: 0 auto;
-padding: 40px;
-}
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-@media (max-width: 899px) {
-.app-container {
-grid-template-columns: 1fr;
-padding: 16px;
+@keyframes floatDoll {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-18px) rotate(12deg);
+  }
+}
+
+@keyframes popInBtn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseBg {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shine {
+  from { background-position: -200% center; }
+  to { background-position: 200% center; }
+}
+
+/* 4. Correct/Wrong Colors */
+.correct { background-color: #4caf50 !important; color: white !important; }
+.wrong { background-color: #f44336 !important; color: white !important; }
+
+/* 5. Ad Modal (The Red Box) */
+.ad-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000 !important;
+  background-color: #ff5252;
+  padding: 30px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  width: min(100%, 400px);
+  max-height: 90vh;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* 6. Footer & Others */
+.footer-compliance {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+}
+.footer-compliance button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.banner-ad-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* 7. Responsive */
+
+@media (min-width: 768px) {
+  .app-container {
+    padding: 60px 20px;
+  }
+
+  .quiz-section {
+    max-width: 620px;
+    padding: 50px;
+  }
 }
 .ad-section {
-position: relative;
-top: 0;
-width: 100%;
+  background-color: #e7e71e; /* இது தெரியுதான்னு பாரு */
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 200px; /* இத ஆட் பண்ணு, அப்போதான் பாக்ஸ் பெருசா தெரியும் */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
+.main-layout {
+  display: flex;
+  justify-content: center; /* குவிஸ் சென்டர்ல இருக்க */
+  gap: 20px;              /* ஆட்ஸ்க்கும் குவிஸுக்கும் நடுவுல இடைவெளி */
+  padding: 20px;
 }
 
-
-
-
+.left-ad, .right-ad {
+  width: 200px;           /* ஆட்ஸ்க்கு தேவையான அகலம் */
+  min-height: 400px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
